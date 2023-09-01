@@ -11,8 +11,8 @@ using Todo.API.Data;
 namespace Todo.API.Migrations
 {
     [DbContext(typeof(TodoAppDbContext))]
-    [Migration("20230810151312_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20230830233829_Init Migration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,15 +33,12 @@ namespace Todo.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Deadline")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Priority")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Todo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

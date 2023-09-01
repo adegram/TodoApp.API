@@ -21,9 +21,12 @@ namespace Todo.API.Controllers
             _context = context;
         }
 
-        // GET: api/Todos
+
+
+
+        // GET: api/Todos (To get all todos)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Todos>>> GettodoLists()
+        public async Task<ActionResult<IEnumerable<Todos>>> GetAlltodo()
         {
           if (_context.todoLists == null)
           {
@@ -32,7 +35,14 @@ namespace Todo.API.Controllers
             return await _context.todoLists.ToListAsync();
         }
 
-        // GET: api/Todos/5
+
+
+
+
+
+
+
+        // GET: api/Todos/5 (to get single todo)
         [HttpGet("{id}")]
         public async Task<ActionResult<Todos>> GetTodos(int id)
         {
@@ -50,8 +60,14 @@ namespace Todo.API.Controllers
             return todos;
         }
 
+
+
+
+
+
+
         // PUT: api/Todos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodos(int id, Todos todos)
         {
@@ -81,8 +97,15 @@ namespace Todo.API.Controllers
             return NoContent();
         }
 
+
+
+
+
+
+
+
+
         // POST: api/Todos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Todos>> PostTodos(Todos todos)
         {
@@ -93,7 +116,7 @@ namespace Todo.API.Controllers
             _context.todoLists.Add(todos);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodos", new { id = todos.Id }, todos);
+            return CreatedAtAction(nameof(GetTodos), new { id = todos.Id }, todos);
         }
 
         // DELETE: api/Todos/5
